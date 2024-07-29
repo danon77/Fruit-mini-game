@@ -44,8 +44,9 @@ function startFallingObjects() {
             object.addEventListener('click', () => {
                 score = Math.max(0, score - 10);
                 scoreElement.textContent = `Points: ${score}`;
-                showPopup(object, '-10');
-                object.remove();
+                showText(object, '-10');
+                animateAndRemove(object);
+                flashScreenRed();
             });
         } else {
             object.src = getRandomImage();
@@ -53,14 +54,14 @@ function startFallingObjects() {
             object.addEventListener('click', () => {
                 score++;
                 scoreElement.textContent = `Points: ${score}`;
-                showPopup(object, '+1');
-                object.remove();
+                showText(object, '+1');
+                animateAndRemove(object);
             });
         }
 
-        object.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
-        object.style.top = '-100px';
         document.body.appendChild(object);
+        object.style.left = `${Math.random() * (window.innerWidth - object.offsetWidth)}px`;
+        object.style.top = `-${object.offsetHeight}px`;
 
         let fallingSpeed = 4;
         const fallInterval = setInterval(() => {
@@ -105,16 +106,38 @@ function gameOver() {
 function removeAllObjects() {
     const fallingObjects = document.querySelectorAll('.falling-object');
     fallingObjects.forEach(object => object.remove());
+
+    const floatingText = document.querySelectorAll('.floating-text');
+    floatingText.forEach(object => object.remove());
 }
 
-function showPopup(object, text) {
-    const popup = document.createElement('div');
-    popup.textContent = text;
-    popup.classList.add('score-popup');
-    popup.style.left = `${parseInt(object.style.left) + 25}px`;
-    popup.style.top = `${parseInt(object.style.top) - 20}px`;
-    document.body.appendChild(popup);
-    setTimeout(() => popup.remove(), 1000);
+function animateAndRemove(object) {
+    object.classList.add('animate-click');
+    object.addEventListener('animationend', () => {
+        object.remove();
+    });
+}
+
+function showText(object, text) {
+    const textElement = document.createElement('div');
+    textElement.textContent = text;
+    textElement.classList.add('floating-text');
+    document.body.appendChild(textElement);
+
+    const objectRect = object.getBoundingClientRect();
+    textElement.style.left = `${objectRect.left + (objectRect.width / 2) - (textElement.offsetWidth / 2)}px`;
+    textElement.style.top = `${objectRect.top + (objectRect.height / 2) - (textElement.offsetHeight / 2)}px`;
+
+    setTimeout(() => {
+        textElement.remove();
+    }, 1000);
+}
+
+function flashScreenRed() {
+    document.body.classList.add('flash-red');
+    setTimeout(() => {
+        document.body.classList.remove('flash-red');
+    }, 333);
 }
 
 startButton.addEventListener('click', startGame);

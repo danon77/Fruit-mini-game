@@ -22,15 +22,15 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 0 10%;
-    top: 1em;
+    top: 24px;
 }
 
 #start-button {
     background-color: #d6624f;
     border: none;
-    padding: 1em 2em;
-    font-size: 1.2em;
-    border-radius: 0.3em;
+    padding: 19px 38px;
+    font-size: 20px;
+    border-radius: 9px;
     color: #fff;
     cursor: pointer;
 }
@@ -48,8 +48,18 @@ body {
     justify-content: center;
 }
 
-#timer, #score {
-    font-size: 20px;
+#over-text {
+    font-size: 24px;
+}
+
+#result {
+    font-size: 16px;
+}
+
+#timer,
+#score {
+    font-size: 22px;
+    z-index: 3;
 }
 
 .hide {
@@ -60,5 +70,190 @@ body {
     position: absolute;
     height: 100px;
     cursor: pointer;
-    pointer-events: initial;
+    -webkit-user-drag: none;
+}
+
+.animate-click {
+    animation: pop .2s forwards;
+    z-index: 2;
+}
+
+.floating-text {
+    position: absolute;
+    font-size: 20px;
+    animation: points 1s forwards;
+}
+
+.flash-red {
+    background-color: rgb(255, 67, 67);
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes points {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+
+
+
+
+@media (max-width: 1199px) {
+    #score-container {
+        top: 24px;
+    }
+
+    #over-text {
+        font-size: 23px;
+    }
+    
+    #result {
+        font-size: 15px;
+    }
+
+    #start-button {
+        padding: 17px 36px;
+        font-size: 18px;
+        border-radius: 9px;
+    }
+
+    #timer,
+    #score {
+        font-size: 18px;
+    }
+
+    .falling-object {
+        height: 90px;
+    }
+
+    .floating-text {
+        font-size: 18px;
+    }
+}
+
+
+
+
+@media (max-width: 991px) {
+    #score-container {
+        top: 21px;
+    }
+
+    #over-text {
+        font-size: 21px;
+    }
+    
+    #result {
+        font-size: 14px;
+    }
+
+    #start-button {
+        padding: 15px 34px;
+        font-size: 15px;
+        border-radius: 9px;
+    }
+
+    #timer,
+    #score {
+        font-size: 17px;
+    }
+
+    .falling-object {
+        height: 80px;
+    }
+
+    .floating-text {
+        font-size: 17px;
+    }
+}
+
+
+
+
+@media (max-width: 767px) {
+    #score-container {
+        top: 18px;
+    }
+
+    #over-text {
+        font-size: 19px;
+    }
+    
+    #result {
+        font-size: 13px;
+    }
+
+    #start-button {
+        padding: 13px 32px;
+        font-size: 13px;
+        border-radius: 9px;
+    }
+
+    #timer,
+    #score {
+        font-size: 15px;
+    }
+
+    .falling-object {
+        height: 70px;
+    }
+
+    .floating-text {
+        font-size: 15px;
+    }
+}
+
+
+
+
+@media (max-width: 575px) {
+    #score-container {
+        top: 15px;
+    }
+
+    #over-text {
+        font-size: 18px;
+    }
+    
+    #result {
+        font-size: 12px;
+    }
+
+    #start-button {
+        padding: 12px 31px;
+        font-size: 12px;
+        border-radius: 7px;
+    }
+
+    #timer,
+    #score {
+        font-size: 14px;
+    }
+
+    .falling-object {
+        height: 65px;
+    }
+
+    .floating-text {
+        font-size: 14px;
+    }
 }
