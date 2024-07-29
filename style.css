@@ -69,6 +69,7 @@ body {
 .falling-object {
     position: absolute;
     width: 100px;
+    height: 100px;
     cursor: pointer;
     -webkit-user-drag: none;
 }
@@ -143,6 +144,7 @@ body {
 
     .falling-object {
         width: 90px;
+        height: 90px;
     }
 
     .floating-text {
@@ -179,6 +181,7 @@ body {
 
     .falling-object {
         width: 80px;
+        height: 80px;
     }
 
     .floating-text {
@@ -215,6 +218,7 @@ body {
 
     .falling-object {
         width: 70px;
+        height: 70px;
     }
 
     .floating-text {
@@ -251,6 +255,7 @@ body {
 
     .falling-object {
         width: 65px;
+        height: 65px;
     }
 
     .floating-text {
