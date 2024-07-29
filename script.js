@@ -61,7 +61,18 @@ function startFallingObjects() {
 
         document.body.appendChild(object);
         object.style.left = `${Math.random() * (window.innerWidth - object.offsetWidth)}px`;
-        object.style.top = `-${object.offsetHeight}px`;
+        
+        if (window.innerWidth <= 575) {
+            object.style.top = '-65px';
+        } else if (window.innerWidth <= 767) {
+            object.style.top = '-70px';
+        } else if (window.innerWidth <= 991) {
+            object.style.top = '-80px';
+        } else if (window.innerWidth <= 1199) {
+            object.style.top = '-90px';
+        } else {
+            object.style.top = '-100px';
+        }
 
         let fallingSpeed = 4;
         const fallInterval = setInterval(() => {
